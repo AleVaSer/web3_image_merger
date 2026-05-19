@@ -8,33 +8,33 @@ module.exports = {
     async getToken(req, res, next) {
         try {
             const web3 = new Web3(new Web3.providers.HttpProvider(config.node_address));
-            const Axes721Contract = web3.eth.Contract(config.abi, config.address);
+            const 721Contract = web3.eth.Contract(config.abi, config.address);
             const tokenInfo = await Axes721Contract.methods.tokenFullInfo(res.locals.tokenId).call();
 
             const tokenData = JSON.parse(tokenInfo.tokenData);
 
             if (tokenInfo.tokenItem === 'hero') {
 
-                const bonesTokenFullInfo = await Axes721Contract.methods.tokenFullInfo(tokenData.Bones).call();
-                const chestTokenFullInfo = await Axes721Contract.methods.tokenFullInfo(tokenData.Chest).call();
-                const eyesTokenFullInfo = await Axes721Contract.methods.tokenFullInfo(tokenData.Eyes).call();
-                const headTokenFullInfo = await Axes721Contract.methods.tokenFullInfo(tokenData.Head).call();
-                const hatTokenFullInfo = await Axes721Contract.methods.tokenFullInfo(tokenData.Hat).call();
-                const mouthTokenFullInfo = await Axes721Contract.methods.tokenFullInfo(tokenData.Mouth).call();
+                const lipsTokenFullInfo = await 721Contract.methods.tokenFullInfo(tokenData.Lips).call();
+                const legsTokenFullInfo = await 721Contract.methods.tokenFullInfo(tokenData.Legs).call();
+                const pupilsTokenFullInfo = await 721Contract.methods.tokenFullInfo(tokenData.Pupils).call();
+                const headTokenFullInfo = await 721Contract.methods.tokenFullInfo(tokenData.Head).call();
+                const shouldersTokenFullInfo = await 721Contract.methods.tokenFullInfo(tokenData.Shoulders).call();
+                const browsTokenFullInfo = await 721Contract.methods.tokenFullInfo(tokenData.Brows).call();
 
-                const bonesTokenData = JSON.parse(bonesTokenFullInfo.tokenData);
-                const chestTokenData = JSON.parse(chestTokenFullInfo.tokenData);
-                const eyesTokenData = JSON.parse(eyesTokenFullInfo.tokenData);
+                const lipsTokenData = JSON.parse(lipsTokenFullInfo.tokenData);
+                const legsTokenData = JSON.parse(legsTokenFullInfo.tokenData);
+                const pupilsTokenData = JSON.parse(pupilsTokenFullInfo.tokenData);
                 const headTokenData = JSON.parse(headTokenFullInfo.tokenData);
-                const hatTokenData = JSON.parse(hatTokenFullInfo.tokenData);
-                const mouthTokenData = JSON.parse(mouthTokenFullInfo.tokenData);
+                const shouldersTokenData = JSON.parse(shouldersTokenFullInfo.tokenData);
+                const browsTokenData = JSON.parse(browsTokenFullInfo.tokenData);
 
-                res.locals.bonesPath = path.join('.', 'miscellaneous', 'pics', 'bones', bonesTokenData?.Rarity?.toLowerCase(), `${bonesTokenData?.Skin}.png`);
-                res.locals.chestPath = path.join('.', 'miscellaneous', 'pics', 'chest', chestTokenData?.Rarity?.toLowerCase(), `${chestTokenData?.Skin}.png`);
-                res.locals.eyesPath = path.join('.', 'miscellaneous', 'pics', 'eyes', eyesTokenData?.Rarity?.toLowerCase(), `${eyesTokenData?.Skin}.png`);
+                res.locals.bonesPath = path.join('.', 'miscellaneous', 'pics', 'lips', lipsTokenData?.Rarity?.toLowerCase(), `${lipsTokenData?.Skin}.png`);
+                res.locals.chestPath = path.join('.', 'miscellaneous', 'pics', 'legs', legsTokenData?.Rarity?.toLowerCase(), `${legsTokenData?.Skin}.png`);
+                res.locals.eyesPath = path.join('.', 'miscellaneous', 'pics', 'pupils', pupilsTokenData?.Rarity?.toLowerCase(), `${eyesTokenData?.Skin}.png`);
                 res.locals.headPath = path.join('.', 'miscellaneous', 'pics', 'head', headTokenData?.Rarity?.toLowerCase(), `${headTokenData?.Skin}.png`);
-                res.locals.hatPath = path.join('.', 'miscellaneous', 'pics', 'hat', hatTokenData?.Rarity?.toLowerCase(), `${hatTokenData?.Skin}.png`);
-                res.locals.mouthPath = path.join('.', 'miscellaneous', 'pics', 'mouth', mouthTokenData?.Rarity?.toLowerCase(), `${mouthTokenData?.Skin}.png`);
+                res.locals.hatPath = path.join('.', 'miscellaneous', 'pics', 'shoulders', shouldersTokenData?.Rarity?.toLowerCase(), `${shouldersTokenData?.Skin}.png`);
+                res.locals.mouthPath = path.join('.', 'miscellaneous', 'pics', 'brows', browsTokenData?.Rarity?.toLowerCase(), `${browsTokenData?.Skin}.png`);
             }
 
         } catch (err) {
