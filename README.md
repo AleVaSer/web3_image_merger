@@ -35,12 +35,12 @@ mergeImage → склеить слои (bones, chest, head, mouth, eyes, hat) в
 ├── miscellaneous/
 │   ├── cache/              # Кэш сгенерированных изображений
 │   ├── pics/               # Исходные PNG слоёв персонажей
-│   │   ├── bones/
-│   │   ├── chest/
-│   │   ├── eyes/
+│   │   ├── lips/
+│   │   ├── legs/
+│   │   ├── pupils/
 │   │   ├── head/
-│   │   ├── hat/
-│   └── └── mouth/
+│   │   ├── shoulders/
+│   └── └── brows/
 ├── routes/
 │   └── index.js            # Маршруты Express
 └── app.js                  # Точка входа
